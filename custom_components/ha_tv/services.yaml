@@ -1,0 +1,29 @@
+location:
+  name: 打开网页
+  description: 在家庭助理TV应用里打开链接
+  fields:
+    url:
+      name: URL
+      description: 视频链接地址
+      required: true
+      example: "https://www.baidu.com"
+      selector:
+        text:
+notify:
+  name: 通知
+  description: 发送消息通知到家庭助理TV应用
+  fields:
+    message:
+      name: Message
+      description: 消息内容
+      required: true
+      example: 消息内容
+      selector:
+        text:
+    title:
+      name: Title
+      description: 标题
+      required: true
+      example: 标题
+      selector:
+        text:

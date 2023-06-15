@@ -1,0 +1,27 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "家庭助理",
+                "description": "一个简单的TV应用",
+                "data": {}
+            }
+        },
+        "error": {},
+        "abort": {
+            "single_instance_allowed": "仅允许单个配置."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "家庭助理",
+                "description": "test",
+                "data": {}
+            }
+        },
+        "error": {
+            "fail": ""
+        }
+    }
+}
