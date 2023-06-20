@@ -1,16 +1,8 @@
 # ha_tv
 在电视上语音控制HomeAssistant设备
 
-
-
 ```bash
 adb shell appops set com.jiluxinqing.tv SYSTEM_ALERT_WINDOW allow
-```
-
-
-```yaml
-type: location
-data: https://tv.cctv.com/live/cctv1/
 ```
 
 ```yaml
@@ -25,6 +17,13 @@ type: play_media
 data:
   media_type: tts
   media_id: 测试内容
+```
+
+```yaml
+type: play_media
+data:
+  media_type: web
+  data: https://tv.cctv.com/live/cctv1/
 ```
 
 - https://tv.cctv.com/live/cctv1/
