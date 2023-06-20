@@ -4,42 +4,27 @@ import homeassistant.helpers.config_validation as cv
 
 import logging
 
+from .const import PLATFORMS
 from .manifest import manifest
+from .ha_tv import HaTV
 
 _LOGGER = logging.getLogger(__name__)
 CONFIG_SCHEMA = cv.deprecated(manifest.domain)
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    config = entry.data
+    # 初始化服务
+    tv = hass.data.get(manifest.domain)
+    if tv is None:
+        tv = HaTV(hass)
+        hass.data.setdefault(manifest.domain, tv)
+
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(update_listener))
-    await update_listener(hass, entry)
-
-    async def async_location(call):
-        data = call.data
-        event_data = {
-            "type": "location",
-            "data": data.get("url")
-        }
-        hass.bus.async_fire("ha_tv", event_data)
-
-    async def async_notify(call):
-        data = call.data
-        event_data = {
-            "type": "notify",
-            "data": {
-                "title": data.get("title"),
-                "message": data.get("message")
-            }
-        }
-        hass.bus.async_fire("ha_tv", event_data)
-
-    hass.services.async_register(manifest.domain, 'location', async_location)
-    hass.services.async_register(manifest.domain, 'notify', async_notify)
     return True
 
 async def update_listener(hass, entry):
-    options = entry.options
+    await async_unload_entry(hass, entry)
+    await async_setup_entry(hass, entry)
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    config = entry.data
-    return True
+    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)

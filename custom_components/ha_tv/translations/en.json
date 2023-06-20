@@ -3,7 +3,7 @@
         "step": {
             "user": {
                 "title": "家庭助理",
-                "description": "一个简单的TV应用",
+                "description": "一个简单的TV应用，只为直播与推送",
                 "data": {}
             }
         },
@@ -16,12 +16,10 @@
         "step": {
             "user": {
                 "title": "家庭助理",
-                "description": "test",
+                "description": "暂时没有",
                 "data": {}
             }
         },
-        "error": {
-            "fail": ""
-        }
+        "error": {}
     }
 }

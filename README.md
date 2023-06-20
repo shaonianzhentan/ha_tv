@@ -3,6 +3,11 @@
 
 
 
+```bash
+adb shell appops set com.jiluxinqing.tv SYSTEM_ALERT_WINDOW allow
+```
+
+
 ```yaml
 type: location
 data: https://tv.cctv.com/live/cctv1/
@@ -13,6 +18,13 @@ type: notify
 data:
   title: 标题
   message: 内容
+```
+
+```yaml
+type: play_media
+data:
+  media_type: tts
+  media_id: 测试内容
 ```
 
 - https://tv.cctv.com/live/cctv1/
