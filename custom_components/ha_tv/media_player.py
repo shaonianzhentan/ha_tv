@@ -54,7 +54,7 @@ _LOGGER = logging.getLogger(__name__)
 from .manifest import manifest, get_device_info
 
 SUPPORT_FEATURES = SUPPORT_VOLUME_STEP | SUPPORT_VOLUME_MUTE | SUPPORT_VOLUME_SET | \
-    SUPPORT_SELECT_SOURCE | SUPPORT_SELECT_SOUND_MODE | SUPPORT_TURN_ON | \
+    SUPPORT_SELECT_SOURCE | SUPPORT_SELECT_SOUND_MODE | SUPPORT_TURN_ON | SUPPORT_TURN_OFF | \
     SUPPORT_PLAY_MEDIA | SUPPORT_PLAY | SUPPORT_PAUSE | SUPPORT_PREVIOUS_TRACK | SUPPORT_NEXT_TRACK | \
     SUPPORT_SEEK | SUPPORT_CLEAR_PLAYLIST | SUPPORT_SHUFFLE_SET | SUPPORT_REPEAT_SET
 
@@ -81,7 +81,7 @@ class AndroidTVMediaPlayer(MediaPlayerEntity):
         # default attribute
         self._attr_source_list = []
         self._attr_sound_mode_list = []
-        self._attr_state =  STATE_ON
+        self._attr_state =  STATE_OFF
         self._attr_volume_level = 1
         self._attr_repeat = 'all'
         self._attr_shuffle = False

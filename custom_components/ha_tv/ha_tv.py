@@ -21,7 +21,7 @@ class HaTV():
         self.hass = hass
         self.connection = None
         # 事件
-        self.events = {}
+        self.events = []
         # 全部设备
         self.device = {}
         hass.components.websocket_api.async_register_command(
@@ -29,22 +29,6 @@ class HaTV():
             self.receive_data,
             SCHEMA_WEBSOCKET
         )
-        # 注册服务
-        hass.services.async_register(manifest.domain, 'location', self.async_location)
-        hass.services.async_register(manifest.domain, 'notify', self.async_notify)
-
-    async def async_location(self, call):
-        ''' 发送链接 '''
-        data = call.data
-        self.send_data('location', data.get("url"))
-
-    async def async_notify(self, call):
-        ''' 发送通知 '''
-        data = call.data
-        self.send_data('notify', {
-                "title": data.get("title"),
-                "message": data.get("message")
-            })
 
     # 模板解析
     def template(self, _message):
@@ -62,16 +46,9 @@ class HaTV():
         data = msg['data']
         msg_type = data.get('type')
         msg_data = data.get('data', {})
-        if msg_type in self.events:
-            event = self.events.get(msg_type)
-            for func in event:
-                func(msg_type, msg_data)
+        for func in self.events:
+            func(msg_type, msg_data)
 
-    def on_event(self, type, func):
-        event = self.events.get(type)
-        if event is None:
-            event = [ func ]
-        else:
-            if func not in event:
-                event.append(func)
-        self.events[type] = event
+    def on_event(self, func):
+        if func not in self.events:
+            self.events.append(func)
