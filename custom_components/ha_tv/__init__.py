@@ -1,7 +1,8 @@
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import CoreState, HomeAssistant, Context
 import homeassistant.helpers.config_validation as cv
-
+from homeassistant.helpers import discovery
+from homeassistant.const import Platform
 import logging
 
 from .const import PLATFORMS
@@ -20,6 +21,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     entry.async_on_unload(entry.add_update_listener(update_listener))
+    await discovery.async_load_platform(hass,
+        Platform.NOTIFY,
+        manifest.domain,
+        {
+            'name': manifest.domain,
+            'entry_id': entry.entry_id
+        },
+        {},
+    )
     return True
 
 async def update_listener(hass, entry):
