@@ -76,7 +76,7 @@ class AndroidTVMediaPlayer(MediaPlayerEntity):
         self._attr_media_image_remotely_accessible = True
         self._attr_device_class = MediaPlayerDeviceClass.TV.value
         self._attr_supported_features = SUPPORT_FEATURES
-        self._attr_extra_state_attributes = {}
+        self._attr_extra_state_attributes = { 'platform': 'tv' }
 
         # default attribute
         self._attr_source_list = []
