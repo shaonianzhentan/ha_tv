@@ -15,13 +15,6 @@ data:
 ```yaml
 type: play_media
 data:
-  media_type: tts
-  media_id: 测试内容
-```
-
-```yaml
-type: play_media
-data:
   media_type: web
   data: https://tv.cctv.com/live/cctv1/
 ```
