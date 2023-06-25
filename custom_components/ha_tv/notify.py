@@ -25,11 +25,8 @@ class AndroidTVNotificationService(BaseNotificationService):
 
     def send_message(self, message, **kwargs):
         """Send a message."""
+        title = kwargs.get(ATTR_TITLE, '')
         data = kwargs.get(ATTR_DATA) or {}
 
         tv = self.hass.data.get(manifest.domain)
-        tv.send_data('notify', {
-                "title": kwargs.get(ATTR_TITLE),
-                "message": message,
-                'url': data.get('url')
-            })
+        tv.send_data('notify', { "title": title, "message": message, **data })

@@ -1,7 +1,7 @@
 {
     "domain": "ha_tv",
     "name": "\u5BB6\u5EAD\u52A9\u7406TV\u5E94\u7528",
-    "version": "2023.6.20",
+    "version": "2023.6.25",
     "config_flow": true,
     "documentation": "https://github.com/shaonianzhentan/ha_tv",
     "requirements": [],

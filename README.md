@@ -5,11 +5,42 @@
 adb shell appops set com.jiluxinqing.tv SYSTEM_ALERT_WINDOW allow
 ```
 
+## 服务
+
+> 通知服务
+
+placement：`top`、`left`、`right`、`bottom`、`center`、`leftTop`、`leftBottom`、`rightTop`、`rightButton`
+
+```yaml
+service: notify.ha_tv
+data:
+  title: 可选标题
+  message: 消息内容
+  data:
+    duration: 10000
+    placement: rightTop
+```
+
+> 播放视频
+
+```yaml
+service: media_player.play_media
+data:
+  media_content_type: web
+  media_content_id: https://tv.cctv.com/live/cctv1/
+  entity_id: media_player.jia_ting_zhu_li_tvying_yong
+```
+
+## 事件
+
+类型：`ha_tv`
 ```yaml
 type: notify
 data:
   title: 标题
   message: 内容
+  duration: 10000
+  placement: rightTop
 ```
 
 ```yaml
