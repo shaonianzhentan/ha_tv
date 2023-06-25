@@ -47,9 +47,15 @@ data:
 type: play_media
 data:
   media_type: web
-  data: https://tv.cctv.com/live/cctv1/
+  media_id: https://tv.cctv.com/live/cctv1/
 ```
 
+```yaml
+type: play_media
+data:
+  media_type: tts
+  media_id: 你在干嘛呢？我在干饭啊
+```
 
 ## 视频网站
 - https://tv.cctv.com/live/cctv1/
