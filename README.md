@@ -1,4 +1,4 @@
-# ha_tv
+# HomeAssistant TV
 在电视上语音控制HomeAssistant设备
 
 ```bash
@@ -9,7 +9,7 @@ adb shell appops set com.jiluxinqing.tv SYSTEM_ALERT_WINDOW allow
 
 > 通知服务
 
-placement：`top`、`left`、`right`、`bottom`、`center`、`leftTop`、`leftBottom`、`rightTop`、`rightButton`
+显示位置：`top`、`left`、`right`、`bottom`、`center`、`leftTop`、`leftBottom`、`rightTop`、`rightButton`
 
 ```yaml
 service: notify.ha_tv
@@ -50,6 +50,8 @@ data:
   data: https://tv.cctv.com/live/cctv1/
 ```
 
+
+## 视频网站
 - https://tv.cctv.com/live/cctv1/
 - https://tv.cctv.com/live/cctv2/
 - https://tv.cctv.com/live/cctv3/
