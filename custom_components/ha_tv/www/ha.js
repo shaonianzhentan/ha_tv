@@ -25,15 +25,15 @@ const HA_JS = {
     },
     up: function () {
       this.select((list, index) => {
-        index += 1
-        if (index >= list.length) index = 0
+        index -= 1
+        if (index < 0) index = list.length - 1
         return index
       })
     },
     down: function () {
       this.select((list, index) => {
-        index -= 1
-        if (index < 0) index = list.length - 1
+        index += 1
+        if (index >= list.length) index = 0
         return index
       })
     }
