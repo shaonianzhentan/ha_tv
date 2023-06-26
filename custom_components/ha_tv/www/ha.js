@@ -1,18 +1,24 @@
 const HA_JS = {
+  ha: {
+    sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+  },
   'tv.cctv.com': {
     style: `
-      #player{
-        width: 100% !important;
-        height: 100% !important;
-        position: fixed !important;
-        left: 0 !important;
-        top: 0 !important;
-      }
-      .zhibo_201014,
-      .gwA18043_ind01{
-        display: none !important;
-      }
-    `,
+    #player{
+      width: 100% !important;
+      height: 100% !important;
+      position: fixed !important;
+      left: 0 !important;
+      top: 0 !important;
+    }
+    .zhibo_201014,
+    .gwA18043_ind01{
+      display: none !important;
+    }
+  `,
+    init: function () {
+
+    },
     select: function (callback) {
       const list = []
       document.querySelectorAll('#jiemudan dl').forEach(ele => {
@@ -38,11 +44,28 @@ const HA_JS = {
       })
     }
   },
-  'live.douyin.com': `
-  `
+  'v.qq.com': {
+    style: ``,
+    init: async function () {
+      const { sleep } = HA_JS.ha
+      await sleep(10000)
+      document.querySelector('.txp_btn_fullscreen')?.click()
+    },
+    login: async function () {
+      const { sleep } = HA_JS.ha
+      if (!document.querySelector('.user_nickname')?.textContent) {
+        document.querySelector('.btn_pop_link').click()
+        await sleep(3000)
+        document.querySelector('.selected').click()
+        await sleep(3000)
+        document.querySelector('.btn_qq')?.focus()
+      }
+    }
+  }
 }
 if (location.hostname in HA_JS) {
   const js = HA_JS[location.hostname]
+  js.init()
   const style = document.createElement('style')
   style.textContent = js.style
   document.body.appendChild(style)
