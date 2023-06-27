@@ -108,7 +108,11 @@ class AndroidTVMediaPlayer(MediaPlayerEntity):
             self._attr_repeat = msg_data.get('repeat')
             self._attr_shuffle = msg_data.get('shuffle')
             self._attr_is_volume_muted = msg_data.get('muted')
-            self._attr_media_position_updated_at = datetime.now()
+        elif msg_type == 'pong':
+            if self._attr_state ==  STATE_OFF:
+                self._attr_state =  STATE_ON
+
+        self._attr_media_position_updated_at = datetime.now()
 
     @property
     def device_info(self):

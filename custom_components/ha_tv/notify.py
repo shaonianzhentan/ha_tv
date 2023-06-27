@@ -21,7 +21,7 @@ def get_service(hass: HomeAssistant, config: ConfigType, discovery_info: Discove
 class AndroidTVNotificationService(BaseNotificationService):
 
     def __init__(self, hass, config):
-        self.hass = hass        
+        self.hass = hass
 
     def send_message(self, message, **kwargs):
         """Send a message."""
