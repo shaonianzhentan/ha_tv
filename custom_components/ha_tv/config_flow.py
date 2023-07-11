@@ -9,7 +9,11 @@ from homeassistant.core import callback
 
 from .manifest import manifest
 
-DATA_SCHEMA = vol.Schema({})
+DATA_SCHEMA = vol.Schema({
+    vol.Required('ip'): str,
+    vol.Required('url'): str,
+    vol.Required('token'): str
+})
 
 DOMAIN = manifest.domain
 
@@ -20,15 +24,20 @@ class SimpleConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
-        """Handle the initial step."""
+
         if self._async_current_entries():
             return self.async_abort(reason="single_instance_allowed")
 
-        if user_input is None:
-            return self.async_show_form(step_id="user", data_schema=DATA_SCHEMA)
+        errors = {}
+        if user_input is not None:
+            ip = user_input.get('ip')
+            url = user_input.get('url')
+            token = user_input.get('token')
+            
+            return self.async_create_entry(title=manifest.name, data={})
 
-        return self.async_create_entry(title=manifest.name, data={})
-    
+        return self.async_show_form(step_id="user", data_schema=DATA_SCHEMA, errors=errors)
+
     @staticmethod
     @callback
     def async_get_options_flow(entry: ConfigEntry):

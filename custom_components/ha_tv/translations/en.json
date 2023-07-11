@@ -4,7 +4,11 @@
             "user": {
                 "title": "家庭助理",
                 "description": "一个简单的TV应用，只为直播与推送",
-                "data": {}
+                "data": {
+                    "ip": "电视IP地址",
+                    "url": "HA实例地址",
+                    "token": "HA长令牌"
+                }
             }
         },
         "error": {},
@@ -16,8 +20,10 @@
         "step": {
             "user": {
                 "title": "家庭助理",
-                "description": "暂时没有",
-                "data": {}
+                "description": "发送配置到电视APP",
+                "data": {
+                    "url": "网页显示"
+                }
             }
         },
         "error": {}
